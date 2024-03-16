@@ -196,6 +196,10 @@ footer ul{
 
 
 @media all and (max-width: 750px){
+	*{
+		scroll-behavior:smooth;
+        	margin:0;
+		overflow-X:hidden;
 	body{
 		background-image:url("../ProjectImages/mobile.jpg");
 		overflow-X:hidden;
