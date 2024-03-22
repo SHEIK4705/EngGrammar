@@ -185,7 +185,39 @@ footer ul{
           }
      }
 }
+.pronounciation, .translation{
+        display:flex;
+        align-items:center;
+    }
+    input {
+        padding: 10px;
+        margin: 10px;
+    }
+    div.btn {
+        width:fit-content;
+        height:fit-content;
+        align-items: center;
+	justify-content:center;
+        padding:5px 10px;
+        background-color: #007bff;
+        border-radius: 2px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        
+        &:hover{
+            background-color: #0056b3;
+        }
+        
+    }
+.container{
+	width:fit-content;
+	border:1px solid #000;
+	margin:10% 5%;
+	padding:5%;
+}
 
+	     
 @media screen and (min-width:750px){ 
 	body{
 		font-size:22px;
@@ -336,6 +368,32 @@ cancel
         </center>
   </div>
 
+<div class="container">
+<h1>Word Pronounciation and Translation</h1><br>
+<center>
+<div class="pronounciation">      
+<input type="text" id="wordInput" placeholder="Enter a word">
+<div class="btn" onclick="pronounceWord()">
+     <span class="material-symbols-outlined">
+volume_up
+</span>
+</div>
+<audio id="audio" controls style="display:none"></audio>
+</div>
+
+<div class="translation">
+<input type="text" id="inputWord" placeholder="Enter a word">
+<div class="btn" onclick="translateToTamil()">
+     <span class="material-symbols-outlined">
+g_translate
+</span>
+     </div>
+<p id="translatedWord"></p>     
+</div>
+</center>
+
+</div>     
+
 </article>
 </main>
 <!--------------- footer ----------------->
@@ -397,6 +455,31 @@ var B = () => {
   el.lastInvokedIndex = el.lastInvokedIndex >= methodsToInvoke.length ? 0 : (el.lastInvokedIndex || 0);
   methodsToInvoke[el.lastInvokedIndex++]();
 });
+
+    function pronounceWord() {
+        const word = document.getElementById('wordInput').value;
         
+        if(word!=''){
+          const audio = new Audio(`https://translate.google.com/translate_tts?ie=UTF-8&q=${word}&tl=en&client=tw-ob`);
+        audio.play();
+        }
+        else{
+          alert("Plese enter any word")
+        }
+  
+    }
+    
+    function translateToTamil() {
+    const inputWord = document.getElementById('inputWord').value;
+    if(inputWord!=''){
+    const translatedWord = encodeURIComponent(inputWord);
+    const url = `https://translate.google.com/?sl=auto&tl=ta&text=${translatedWord}&op=translate`;
+    window.open(url, '_blank');
+    }
+    else{
+         alert("Plese enter any word")
+    }
+}
+
 </script>
 </html>
